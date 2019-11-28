@@ -1,0 +1,1311 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="hexo性能优化, 留住">
+    <meta name="description" content="    
+
+
+
+
+想让你的hexo博客被更多的人在搜索引擎中搜到吗？ github是不允许百度的爬虫爬取内容的，所以我们的项目如果是托管在github上的话基本是不会被百度收录的，所以要同时托管到github和coding上 。
+一.  托">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>hexo性能优化 | 留住</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">留住</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">留住</div>
+        <div class="logo-desc">
+            
+            关于健康的系列话题，健康知识普及，良好的生活习惯
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/liu5689" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/liu5689" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        hexo性能优化
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">经验总结</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/" class="post-category">
+                                技术应用
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-10-26
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        3.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        14 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                 <div align="middle">   <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=477407914&auto=0&height=66"></iframe></div>
+
+
+
+
+<h1 id="想让你的hexo博客被更多的人在搜索引擎中搜到吗？"><a href="#想让你的hexo博客被更多的人在搜索引擎中搜到吗？" class="headerlink" title="想让你的hexo博客被更多的人在搜索引擎中搜到吗？"></a>想让你的hexo博客被更多的人在搜索引擎中搜到吗？</h1><p> github是不允许百度的爬虫爬取内容的，所以我们的项目如果是托管在github上的话基本是不会被百度收录的，所以要同时托管到github和coding上 。</p>
+<h3 id="一-托管到-github上-略，这里重点说明托管到coding上的方法："><a href="#一-托管到-github上-略，这里重点说明托管到coding上的方法：" class="headerlink" title="一.  托管到 github上 略，这里重点说明托管到coding上的方法："></a><strong>一.  托管到 github上 略，这里重点说明托管到coding上的方法：</strong></h3><p>​    1），【注册coding】 直接注册<a href="https://dev.tencent.com/" target="_blank" rel="noopener">腾讯云开发者平台中心</a>就好了 ，用户名与邮箱同github一样.</p>
+<p>​    2),    【 创建项目】 登录了账号，进入工作台，创建项目在这个位置。(右上角) </p>
+<p><img src="/images/0.jpg" alt="0"></p>
+<p><img src="/images/1.jpg" alt="1"></p>
+<p>   3），【配置公钥】  首先点击右上角的头像—》个人设置—》SSH公钥—》新增公匙—》粘贴你自己的SSH公匙（在c盘用户的ssh文件夹中，id_rsa.pub)—》永久有效(推荐)—》确定即可。    如果你之前部署过github，用同一个公匙是没问题的。</p>
+<p>  4），配置_config.yml文件</p>
+<p><img src="/images/2.jpg" alt="2"></p>
+<p>  5)，【部署】一切都做完了<code>hexo g -d</code>将代码上传至coding，推送到仓库即可。注意首次推送会有一处地方叫你输入yes，一路回车，便可成功部署到远程仓库。中途可能会出一些错，不要怕，错了就复制错误到百度寻找解决方法或者给我留言，都是可以解决的。<a href="https://coding.net/help/faq/pages/coding-pages-faq.html" target="_blank" rel="noopener">Coding Pages 常见问题</a> </p>
+<p>  6），【设置coding的pages服务】 将代码上传至coding之后我们就要开启pages服务了，在pages页面我们只需要将部署来源选择为master分支，然后将自定义域名填写我们自己购买的域名就可以了  。这时，</p>
+<p>在浏览器输入xxx.coding.me的网址，就可以看到你的网站了。</p>
+<p>【重点】想要拥有一个个性化的网站，必须买一个域名（这也是百度收录的条件），然后我们到万网下面设置我们的域名解析，将默认ip解析到coding上（这里要注意，解析到coding时记录值是pages.coding.me，并没有具体的账号名或者仓库名，并且只有设置完成域名解析才可以在coding上设置自定义域名），将海外的ip解析到github上，设置如下： </p>
+<p><img src="/images/3.jpg" alt="3"><br>      Coding Pages申请SSL/TLS证书错误<br>  【 问题】<br>今天我的个人站点SSL/TLS证书到期，我的证书是由Coding Pages提供的，每次申请成功后有效期是三个月，证书到期后可以继续免费申请。但是当我登陆进入Coding Pages服务的后台并点击申请证书时，竟然报错了！！</p>
+<p>我重新点了申请，几秒后依然报错，并提示我半小时只能申请一次。<br>  【 解决方法】<br>由于我是在阿里云购买的域名，于是登陆到阿里云域名解析的后台系统，打开个人域名的解析设置，暂停对于境外线路的解析。这里暂停就行了，一般来说大概需要5分钟左右的生效时间，毕竟DNS解析是存在缓存的。</p>
+<p>五分钟后，我又进入Coding Pages服务的后台，再一次申请SSL/TLS证书，果不其然，几秒钟后我申请证书成功，又给续了三个月。</p>
+<p>最后，再次返回阿里云域名解析的后台，将境外解析的线路再次启用，嗯，完美。</p>
+<p>至此就完成了将你的hexo编译的博客同时部署在github和coding上 。</p>
+<h3 id="二，【hexo性能优化】"><a href="#二，【hexo性能优化】" class="headerlink" title="二，【hexo性能优化】"></a><strong>二，【hexo性能优化】</strong></h3><p>【教程gulp】  如果你先前将 gulp 安装到全局环境中了，请执行 npm rm –global gulp 将 gulp 删除再继续以下操作。</p>
+<p>  《  0、npm介绍 》<br> 01、说明：npm（node package manager），nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；</p>
+<p> 02、使用npm安装插件：命令提示符执行 npm install <name> –save-dev</name></p>
+<p>  <name>：node插件名称。例：npm install gulp-less –save-dev</name></p>
+<p> 03、-g：全局安装:将会安装在C:\Users\Administrator\AppData\Roaming\npm，并且写入系统环境变量；           非全局安装：将会安装在当前定位目录；  全局安装可以通过命令行在任何地方调用它；本地安装将安装在定位目 录的node_modules文件夹下，通过require()调用；</p>
+<p> 04、–save：将保存配置信息至package.json（package.json是nodejs项目配置文件）；</p>
+<p> 05、-dev：保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存 在dependencies的像这些express/ejs/body-parser等等。</p>
+<p> 、为什么要保存至package.json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package.json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm install，则会根据package.json下载所有需要的包，npm install –production只下载dependencies节点的包）。</p>
+<p> 06、使用npm卸载插件：npm uninstall <name> –save-dev   [ PS：不要直接删除本地插件包]</name></p>
+<p> 07、删除全部插件：npm uninstall gulp-less gulp-uglify gulp-concat ……???太麻烦</p>
+<p> 08、使用npm更新插件：npm update <name> –save-dev</name></p>
+<p> 09、更新全部插件：npm update [–save-dev] </p>
+<p>【安装gulp步骤】<br>    1)全局安装gulp<br>          说明：全局安装gulp目的是为了通过她执行gulp任务；安装：命令提示符执行 npm install gulp -g；<br>          查看是否正确安装：命令提示符执行gulp -v，出现版本号即为正确安装。</p>
+<p>2) 新建package.json文件  命令提示符执行  npm init    注意：初始化packge.json文件必须在你项目的根目录下打开命令行工具，执行初始化代码。 package.json文件是基于node.js项目必不可少的配置文件，它是存放在项目根目录的普通json文件，里面有你各个依赖安装模块插件的版本信息，以至于你能清楚看到你安装了那些模块。</p>
+<p>3)本地安装gulp：npm install gulp –save-dev   全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。<br>4)本地安装gulp插件:  定位目录命令提示符执行 npm install <name>–save-dev；本示例以gulp-less为例（编译less文件），命令提示符执行 npm install gulp-less –save-dev；将会安装在node_modules的gulp-less目录下</name></p>
+<p>5) 新建gulpfile.js文件（重要）  说明：gulpfile.js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile.js放入其他文件夹下亦可）。它大概是这样一个js（JavaScript）文件：</p>
+<p>const gulp = require(‘gulp’);<br>const babel = require(‘gulp-babel’); // 语法转换<br>const concat = require(‘gulp-concat’); // 合并<br>const uglify = require(‘gulp-uglify’); // js压缩<br>const sass = require(‘gulp-sass’) // scc编译<br>const htmlmin = require(‘gulp-htmlmin’); //html压缩<br>const watch = require(‘gulp-watch’);// 监听文件<br>const connect = require(‘gulp-connect’); // 服务<br>const imagemin = require(‘gulp-imagemin’) // 图片压缩<br>const del = require(‘del’) // 清空目录<br>const minifyCSS = require(‘gulp-minify-css’) //css压缩</p>
+<p>// es6语法转换 js压缩 md5命名<br>gulp.task(‘js’, async() =&gt; {<br>  await  gulp.src(‘./src/js/<em>.js’)<br>          .pipe(babel({<br>            presets: [‘@babel/env’]<br>          }))<br>          .pipe(uglify())<br>          .pipe(gulp.dest(‘./dist/js’))<br>          .pipe(connect.reload())<br>});<br>// scss编译成css<br>gulp.task(“scss”, async () =&gt; {<br>  await gulp.src(‘./src/scss/</em>.scss’)<br>    .pipe(sass().on(‘error’, sass.logError))<br>    .pipe(gulp.dest(‘./src/css’))<br>});<br>// scc合并压缩<br>gulp.task(“css”, async() =&gt; {<br>  await gulp.src([‘./src/css/index.css’, ‘./src/css/base.css’])<br>            .pipe(concat(‘index.css’))<br>            .pipe(minifyCSS({keepBreaks:true}))<br>            .pipe(gulp.dest(‘./dist/css’))<br>            .pipe(connect.reload())<br>})</p>
+<p>// 压缩图片<br>gulp.task(‘img’, async () =&gt; {<br>  await gulp.src(‘./src/img/*’)<br>          .pipe(imagemin())<br>          .pipe(gulp.dest(‘./dist/img’))<br>})<br>// html压缩<br>gulp.task(‘html’, async() =&gt; {<br>  await gulp.src(‘./src/index.html’)<br>            .pipe(htmlmin({ collapseWhitespace: true }))<br>            .pipe(gulp.dest(‘dist/‘))<br>            .pipe(connect.reload())</p>
+<p>});</p>
+<p>gulp.task(‘clean’, async() =&gt; {<br>  await del([‘dist/*’]);<br>})</p>
+<p>//服务<br>gulp.task(‘connect’, function () {<br>  connect.server({<br>      root: “src”,<br>      port: 8080,<br>      livereload: true,<br>  });<br>});<br>//监视文件， 自动执行<br>gulp.task(‘myWatch’, function(){<br>  gulp.watch(‘./src/scss/<em>.scss’, gulp.series(‘scss’))<br>  gulp.watch(‘./src/css/</em>.css’, gulp.series(‘css’))<br>  gulp.watch(‘./src/js/<em>.js’, gulp.series(‘js’))<br>  gulp.watch(‘./src/index.html’, gulp.series(‘html’))<br>  gulp.watch(‘./src/img/</em>‘, gulp.series(‘img’))<br>})<br>//启动开发环境<br>gulp.task(‘start’, gulp.series(gulp.parallel(‘myWatch’, ‘connect’)));<br>// 构建项目<br>gulp.task(‘dist’,gulp.series(gulp.parallel(‘clean’,’html’,’scss’, ‘css’, ‘js’, ‘img’)));</p>
+<p>   在执行生成命令和部署命令中间加一个 gulp 的命令即可：</p>
+<p>hexo clean    //清除public文件夹<br>hexo g     //编译文章，生成public文件夹<br>gulp     //压缩js、css、img文件<br>hexo d    //部署到github</p>
+<h3 id="三-SEO优化"><a href="#三-SEO优化" class="headerlink" title="三. SEO优化"></a><strong>三. SEO优化</strong></h3><p>推广是一个烦人的事情，不擅长推广，那么怎么才能让别人知道我们呢，我们就要想办法让别人通过搜索就可以搜索到你博客的内容，给我们带来自然流量，这就需要seo优化,让我们的站点变得对搜索引擎友好 ，首先要做的就是让各大搜索引擎收录你的站点 。</p>
+<p>  1），【让百度收录你的站点】 在百度搜索引擎中输入<code>site:&lt;域名&gt;</code>,如果我们的网站并没有被百度收录，我们可以直接点击下面的“网址提交”来提交我们的网站  。</p>
+<p> A.”验证网站所有权“  登录百度站长平台：<a href="http://zhanzhang.baidu.com,只要有百度旗下的账号就可以登录，登录成功之后在《站点管理》中点击《添加网站》然后输入你的站点地址，建议输入的网站为www开头的，不要输入github.io的，因为github是不允许百度的spider爬取github上的内容的，所以如果想让你的站点被百度收录，只能使用自己购买的域名" target="_blank" rel="noopener">http://zhanzhang.baidu.com,只要有百度旗下的账号就可以登录，登录成功之后在《站点管理》中点击《添加网站》然后输入你的站点地址，建议输入的网站为www开头的，不要输入github.io的，因为github是不允许百度的spider爬取github上的内容的，所以如果想让你的站点被百度收录，只能使用自己购买的域名</a> 。在选择完《网站的类型》之后需要《验证网站》的所有权。验证网站所有权的方式有三种：文件验证，html标签验证和cname解析验证，使用哪一种方式都可以，cname验证最为简单，只需加一条解析就好~</p>
+<p>B.“生成网站地图”</p>
+<p>我们需要使用npm自动生成网站的sitemap，然后将生成的sitemap提交到百度和其他搜索引擎</p>
+<p>  安装sitemap插件</p>
+<p> npm install hexo-generator-sitemap –save    </p>
+<p>npm install hexo-generator-baidu-sitemap –save</p>
+<p>  修改博客配置文件</p>
+<p>​     在根目录配置文件中修改url为你的站点地</p>
+<p>1 # URL</p>
+<p> 2 ## If your site is put in a subdirectory, set url as ‘<a href="http://yoursite.com/child&#39;" target="_blank" rel="noopener">http://yoursite.com/child&#39;</a> and root as’/child/‘<br>         3 url: <a href="http://cherryblog.site" target="_blank" rel="noopener">http://cherryblog.site</a>  </p>
+<p> 4.root: /</p>
+<p>  5 permalink: :title.html</p>
+<p>  6.permalink_defaults:</p>
+<p>​      输入  hexo c   hexo g   hexo s </p>
+<p>执行完之后就会在网站根目录生成sitemap.xml文件和baidusitemap.xml文件，可以通过<a href="http://www.cherryblog.site/baidusitemap.xml,查看该文件是否生成，其中sitemap.xml文件是搜索引擎通用的文件，baidusitemap.xml是百度专用的sitemap文件。" target="_blank" rel="noopener">http://www.cherryblog.site/baidusitemap.xml,查看该文件是否生成，其中sitemap.xml文件是搜索引擎通用的文件，baidusitemap.xml是百度专用的sitemap文件。</a></p>
+<p>  C.“向百度提交链接”在百度站长平台，找到“链接提交”，点击“死链提交”这里我们可以看到有两种提交方式，自动提交和手动提交，自动提交又分为主动推送、自动推送和sitemap，主动推送效率最高。<br>      主动推送</p>
+<p>​      安装插件 npm install hexo-baidu-url-submit –save</p>
+<p>然后再根目录的配置文件中新增字段</p>
+<p>​          1 baidu_url_submit:</p>
+<p>​          2 count: 100 # 提交最新的一个链接</p>
+<p>​          3 host: <a href="http://www.cherryblog.site" target="_blank" rel="noopener">www.cherryblog.site</a> # 在百度站长平台中注册的域名</p>
+<p>​          4 token: 8OGYpxowYnhgVsUM # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!<br>​                  5 path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里</p>
+<p>​      同时，在下面加入新的deploye</p>
+<p>​          1 deploy:</p>
+<p>​          2   - type:baidu_url_submitter<br> 这样执行$ hexo deploy 的时候，新的链接就会被推送了.<br>​     被百度收录过程还是蛮久的，一度让我以为我的方法有问题，提交链接在站长工具中有显示大概是有两天的时候，站点被百度收录大概花了半个月= =</p>
+<p>​        </p>
+<p>​    2），【让google收录你的站点】</p>
+<p>相比于百度，google的效率实在不能更快，貌似十分钟左右站点就被收录了，其实方法是和百度是一样的，都是先验证你的站点所有权，然后提交sitemap<br>google站点平台：<a href="https://www.google.com/webmasters/，然后就是注册账号、验证站点、提交sitemap，一步一步来就好，过不了过久就可以被google收录了。" target="_blank" rel="noopener">https://www.google.com/webmasters/，然后就是注册账号、验证站点、提交sitemap，一步一步来就好，过不了过久就可以被google收录了。</a></p>
+<p>​           让其他搜索引擎收录你的站点</p>
+<p>除了百度和google两大搜索引擎，还有搜狗、360等其他的搜索引擎，流程都是一样的<br>，大家就自行选择添加哈，这里就不再赘述了~</p>
+<p>​          优化你的url</p>
+<p>   seo搜索引擎优化认为，网站的最佳结构是用户从首页点击三次就可以到达任何一个页面，但是我们使用hexo编译的站点打开文章的url是：sitename/year/mounth/day/title四层的结构，这样的url结构很不利于seo，爬虫就会经常爬不到我们的文章，于是，我们可以将url直接改成sitename/title的形式，并且title最好是用英文，在根目录的配置文件下修改permalink如下：</p>
+<p>1.url: <a href="http://cherryblog.site" target="_blank" rel="noopener">http://cherryblog.site</a></p>
+<p>  2 root: /</p>
+<p>  3 permalink: :title.html</p>
+<p>  4 permalink_defaults:</p>
+<p>​    3）.   【 其他seo优化】</p>
+<p>seo优化应该说是一个收益延迟的行为，可能你做的优化短期内看不到什么效果，但是一定要坚持，seo优化也是有很深的可以研究的东西，从我们最初的网站设计，和最基础的标签的选择都有很大的关系，网站设计就如我们刚刚说的，要让用户点击三次可以到达网站的任何一个页面，要增加高质量的外链，增加相关推荐（比如说我们经常见到右侧本站的最高阅读的排名列表），然后就是给每一个页面加上keyword和描述<br>在代码中，我们应该写出能让浏览器识别的语义化HTML，这样有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；并且对外链设置nofollow标签，避免spider爬着爬着就爬出去了（减少网站的跳出率），并且我们要尽量在一些比较大的网站增加我们站点的曝光率，因为spider会经常访问大站，这样spider是很有可能爬到我们当中的站点的，so…. </p>
+<ul>
+<li><p>网站外链的推广度、数量和质量 </p>
+</li>
+<li><p>网站的内链足够强大 </p>
+</li>
+<li><p>网站的原创质量 </p>
+</li>
+<li><p>网站的年龄时间 </p>
+</li>
+<li><p>网站的更新频率（更新次数越多越好） </p>
+</li>
+<li><p>网站的服务器 </p>
+</li>
+<li><p>网站的流量：流量越高网站的权重越高 </p>
+</li>
+<li><p>网站的关键词排名：关键词排名越靠前，网站的权重越高 </p>
+</li>
+<li><p>网站的收录数量：网站百度收录数量越多，网站百度权重越高 </p>
+</li>
+<li><p>网站的浏览量及深度：用户体验越好，网站的百度权重越高</p>
+</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <a  href="/3.html">
+                    《hexo性能优化》
+            </a> 由
+            <a href="https://www.liuzhu.pub">
+                作者原创
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ef3f143c0c60fcf43e8e',
+        clientSecret: '8fa705d03750b206946481997708c919ffdb32b8',
+        repo: 'liu5689.github.io',
+        owner: 'liu5689',
+        admin: "liu5689",
+        id: '2019-10-26T00-00-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="matery主题优化">
+                        
+                        <span class="card-title">matery主题优化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            增加建站时间，优化文章路径，制作png透明图片更换网站logo
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/" class="post-category">
+                                    技术应用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">经验总结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/1.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="小白Hexo搭建个人博客网站（2019版）">
+                        
+                        <span class="card-title">小白Hexo搭建个人博客网站（2019版）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            hexo+ github 快速搭建个人独立网站
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/" class="post-category">
+                                    技术应用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">经验总结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 留住<br />'
+            + '作者: 刘关兵<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+             Copyright&nbsp;&copy; 2019 刘关兵. All Rights Reserved.
+			 
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">11.9k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "16";
+                    var startHour = "22";
+                    var startMinute = "18";
+                    var startSecond = "58";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:liu.guanbing@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1024502213" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1024502213" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2019, 10, 16, 22, 0018, 58); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
